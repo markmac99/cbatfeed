@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "C:\\users\\mark\\anaconda3\\envs\\CBATfeed\\python.exe",
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
+}
