@@ -1,12 +1,9 @@
 #
 # Python script to pull the CBAT  "Transient Objects Confirmation Page" RSS feed and turn it into a webpage
 #
-import os
 import feedparser
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 import configparser
+from ukmon_meteortools.utils import sendAnEmail
 
 
 # turn most recent 50 entries into a webpage
@@ -26,30 +23,12 @@ def sendEmail(entry):
     localcfg = configparser.ConfigParser()
     localcfg.read('config.ini')
     mailrecip = localcfg['postprocess']['mailrecip'].rstrip()
-    smtphost = localcfg['postprocess']['mailhost'].rstrip()
-    smtpport = int(localcfg['postprocess']['mailport'].rstrip())
-    smtpuser = localcfg['postprocess']['mailuser'].rstrip()
-    smtppwd = localcfg['postprocess']['mailpwd'].rstrip()
-    with open(os.path.expanduser(smtppwd), 'r') as fi:
-        line = fi.readline()
-        spls=line.split('=')
-        smtppass=spls[1].rstrip()
 
-    s = smtplib.SMTP(smtphost, smtpport)
-    s.starttls()
-    s.login(smtpuser, smtppass)
-    msg = MIMEMultipart()
-
-    msg['From']='website@markmcintyreastro.co.uk'
-    msg['To']=mailrecip
-
-    msg['Subject']='CBAT Alert'
     message=''
     for li in entry:
         message = message + li + '\n'
-    msg.attach(MIMEText(message, 'plain'))
-    s.sendmail(msg['From'], mailrecip, msg.as_string())
-    s.close()
+    sender = 'website@markmcintyreastro.co.uk'
+    sendAnEmail(mailrecip, message, 'CBAT Alert', sender)
 
 
 def checkIfEmailNeeded(entry):

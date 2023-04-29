@@ -12,32 +12,13 @@
     - {src: '{{srcdir}}/cbatFeed.sh', dest: '{{destdir}}', mode: '755', backup: no }
     - {src: '{{srcdir}}/cbatFeed.py', dest: '{{destdir}}', mode: '644', backup: no }
     - {src: '{{srcdir}}/config.ini', dest: '{{destdir}}', mode: '644', backup: no }
+    - {src: '{{srcdir}}/requirements.txt', dest: '{{destdir}}', mode: '644', backup: no }
 
   - name: update mail recip
     lineinfile: 
       path: '{{destdir}}/config.ini'
       regexp: 'MAILRECIP='
       line: 'MAILRECIP=markmcintyre99@googlemail.com'
-  - name: update mail host
-    lineinfile: 
-      path: '{{destdir}}/config.ini'
-      regexp: 'MAILHOST='
-      line: 'MAILHOST=smtp.gmail.com'
-  - name: update mail port
-    lineinfile: 
-      path: '{{destdir}}/config.ini'
-      regexp: 'MAILPORT='
-      line: 'MAILPORT=587'
-  - name: update mail user
-    lineinfile: 
-      path: '{{destdir}}/config.ini'
-      regexp: 'MAILUSER='
-      line: 'MAILUSER=mjmm456'
-  - name: update mail pwd
-    lineinfile: 
-      path: '{{destdir}}/config.ini'
-      regexp: 'MAILPWD='
-      line: 'MAILPWD=~/.ssh/gmailpass'
   - name: update Webserver name
     lineinfile: 
       path: '{{destdir}}/config.ini'
