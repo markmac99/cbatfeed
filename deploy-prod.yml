@@ -1,7 +1,7 @@
 ---
 - hosts: ukmonhelper
   vars:
-    srcdir: /mnt/e/dev/CBATfeed
+    srcdir: /mnt/e/dev/astronomy/CBATfeed
     destdir: ~/mmwebsite/CBATfeed
   tasks:
   - name: Ensures {{destdir}} exists
@@ -23,7 +23,7 @@
     lineinfile: 
       path: '{{destdir}}/config.ini'
       regexp: 'HOSTNAME='
-      line: 'HOSTNAME=ip-172-31-36-146'
+      line: 'HOSTNAME=ip-172-31-47-0'
   - name: update Webserver user
     lineinfile: 
       path: '{{destdir}}/config.ini'
