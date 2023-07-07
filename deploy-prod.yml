@@ -1,5 +1,5 @@
 ---
-- hosts: ukmonhelper
+- hosts: wordpresssite
   vars:
     srcdir: /mnt/e/dev/astronomy/CBATfeed
     destdir: ~/mmwebsite/CBATfeed
